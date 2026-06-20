@@ -1,0 +1,21 @@
+{
+  "telegram_bot_url": "https://t.me/antibugsatisbot",
+  "price_try": "390 TL",
+  "price_usd": "$8,40 $",
+  "tr": {
+    "title1": "Gelişmiş Tarama ve Sınıflandırma",
+    "desc1": "AntiBug, sisteminizdeki dosyaları boyutlarına göre (Küçük ve Büyük) ayırır. Casus yazılımları, minerları ve fidye yazılımlarını anında tespit ederek tehlike seviyelerine göre akıllıca sınıflandırır.",
+    "title2": "Entegre Sağ Tık Menüsü",
+    "desc2": "Zararlı bir dosya bulunduğunda, arayüz üzerinden fare ile sağ tıklayarak 'Hızlı Silme' veya 'Dosya Konumunu Aç' seçeneklerini kullanabilirsiniz. Zamandan tasarruf edin, tehditleri anında yok edin.",
+    "title3": "Güvenli Karantina Sistemi",
+    "desc3": "Şüpheli dosyaları kalıcı olarak silmek yerine güvenli ve şifreli bir karantina alanına taşıyın. Yanlışlıkla işaretlenen önemli verilerinizi kaybetmeyin, kontrol tamamen sizde olsun."
+  },
+  "en": {
+    "title1": "Advanced Scanning & Classification",
+    "desc1": "AntiBug separates files by size (Small & Large). It instantly detects spyware, miners, and ransomware, smartly classifying them according to their threat levels.",
+    "title2": "Integrated Right-Click Menu",
+    "desc2": "When a threat is found, simply right-click to use 'Quick Delete' or 'Open File Location'. Save time and eliminate threats instantly without hassle.",
+    "title3": "Secure Quarantine Vault",
+    "desc3": "Move suspicious files to a secure, encrypted quarantine area instead of permanently deleting them. Prevent accidental data loss and keep total control over your system."
+  }
+}
