@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AntiBug Anti-Virus Pro</title>
+    <style>
+        :root[data-theme="dark"] {
+            --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f8fafc; --text-muted: #94a3b8; --border-color: #334155;
+        }
+        :root[data-theme="light"] {
+            --bg-color: #f8fafc; --card-bg: #ffffff; --text-color: #0f172a; --text-muted: #475569; --border-color: #cbd5e1;
+        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: all 0.3s ease; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid var(--border-color); background: var(--card-bg); }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-img { width: 40px; height: 40px; object-fit: contain; }
+        .logo-text { font-size: 1.5rem; font-weight: bold; color: #38bdf8; }
+        .controls { display: flex; gap: 15px; }
+        select, button { padding: 8px 14px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); cursor: pointer; font-weight: 500; }
+        .hero { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; color: #38bdf8; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; }
+        .showcase { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px 20px; display: flex; flex-direction: column; gap: 40px; }
+        .feature-row { display: flex; align-items: center; gap: 40px; background: var(--card-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .feature-img { width: 45%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); }
+        .feature-text { width: 55%; }
+        .feature-text h2 { color: #38bdf8; margin-top: 0; font-size: 1.6rem; }
+        .feature-text p { color: var(--text-muted); line-height: 1.6; font-size: 1.05rem; }
+        .cta-section { background: var(--card-bg); text-align: center; padding: 50px 20px; border-top: 1px solid var(--border-color); }
+        .price-tag { font-size: 2rem; font-weight: bold; color: #22c55e; margin-bottom: 20px; }
+        .btn-telegram { display: inline-block; padding: 16px 36px; font-size: 1.2rem; font-weight: bold; color: white; background-color: #0284c7; border: none; border-radius: 8px; text-decoration: none; transition: background 0.2s; }
+        .btn-telegram:hover { background-color: #0369a1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="logo.png" alt="AntiBug Logo" class="logo-img">
+            <span class="logo-text">AntiBug Pro</span>
+        </div>
+        <div class="controls">
+            <select id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="tr">Türkçe</option>
+                <option value="en">English</option>
+            </select>
+            <button id="themeBtn" onclick="toggleTheme()">☀️ Light</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 id="heroTitle">AntiBug Anti-Virus v1.0</h1>
+        <p id="heroSub">Bilgisayarınız için hafif, hızlı ve tam yetkili modern güvenlik yazılımı.</p>
+    </section>
+
+    <section class="showcase">
+        <div class="feature-row">
+            <img src="image1.png" alt="Scan" class="feature-img">
+            <div class="feature-text">
+                <h2 id="t1">Yükleniyor...</h2>
+                <p id="d1">Yükleniyor...</p>
+            </div>
+        </div>
+        <div class="feature-row">
+            <img src="image2.png" alt="Menu" class="feature-img">
+            <div class="feature-text">
+                <h2 id="t2">Yükleniyor...</h2>
+                <p id="d2">Yükleniyor...</p>
+            </div>
+        </div>
+        <div class="feature-row">
+            <img src="image3.png" alt="Quarantine" class="feature-img">
+            <div class="feature-text">
+                <h2 id="t3">Yükleniyor...</h2>
+                <p id="d3">Yükleniyor...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="price-tag" id="priceDisplay">...</div>
+        <a href="#" id="botBtn" class="btn-telegram" target="_blank">Telegram Satış Botunu Başlat</a>
+    </section>
+
+    <script>
+        let configData = null;
+        let currentLang = 'tr';
+
+        // 1. CONFIG.JSON VERİLERİNİ ÇEKME
+        fetch('config.json')
+            .then(response => response.json())
+            .then(data => {
+                configData = data;
+                updatePageContent();
+            })
+            .catch(err => console.error("Config yüklenemedi:", err));
+
+        // 2. DİL DEĞİŞTİRME MANTIĞI
+        function changeLanguage(lang) {
+            currentLang = lang;
+            updatePageContent();
+        }
+
+        function updatePageContent() {
+            if (!configData) return;
+
+            // Fiyat ve Link Güncelleme
+            if (currentLang === 'tr') {
+                document.getElementById('heroTitle').innerText = "AntiBug Anti-Virus v1.0";
+                document.getElementById('heroSub').innerText = "Bilgisayarınız için hafif, hızlı ve tam yetkili modern güvenlik yazılımı.";
+                document.getElementById('priceDisplay').innerText = "Tek Seferlik Fiyat: " + configData.price_try;
+                document.getElementById('botBtn').innerText = "Satın Almak İçin Telegram Botunu Başlat";
+            } else {
+                document.getElementById('heroTitle').innerText = "AntiBug Anti-Virus v1.0";
+                document.getElementById('heroSub').innerText = "Lightweight, fast, and fully authorized modern security software for your PC.";
+                document.getElementById('priceDisplay').innerText = "One-Time Price: " + configData.price_usd;
+                document.getElementById('botBtn').innerText = "Launch Telegram Bot to Buy";
+            }
+
+            // Buton Linki
+            document.getElementById('botBtn').href = configData.telegram_bot_url;
+
+            // Dinamik Metin Alanları
+            document.getElementById('t1').innerText = configData[currentLang].title1;
+            document.getElementById('d1').innerText = configData[currentLang].desc1;
+            document.getElementById('t2').innerText = configData[currentLang].title2;
+            document.getElementById('d2').innerText = configData[currentLang].desc2;
+            document.getElementById('t3').innerText = configData[currentLang].title3;
+            document.getElementById('d3').innerText = configData[currentLang].desc3;
+        }
+
+        // 3. AÇIK / KOYU TEMA SEÇİCİ MANTIĞI
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute('data-theme');
+            const btn = document.getElementById('themeBtn');
+
+            if (currentTheme === 'dark') {
+                root.setAttribute('data-theme', 'light');
+                btn.innerText = "🌙 Dark";
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                btn.innerText = "☀️ Light";
+            }
+        }
+    </script>
+</body>
+</html>
